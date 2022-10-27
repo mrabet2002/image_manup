@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "stdio.h": "c",
-        "drawchart.h": "c"
+        "drawchart.h": "c",
+        "imagemanup.h": "c"
     }
 }

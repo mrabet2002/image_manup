@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "drawchart.h"
-#ifndef FMANUP_H_INCLUDED
-#include "fmanup.h"
-#endif
 
-// #ifdef IMG_MAX_SIZE
+#ifndef DRAWCHART_H_INCLUDED
+    #define DRAWCHART_H_INCLUDED
+    #include "drawchart.h"
+#endif
 
 #define COLORS_FREQ_FILE_NAME "levels-frequencies.csv"
 
@@ -21,9 +20,9 @@ struct ColorLevel
 
 ColorLevel colorLevels[255];
 
-ColorLevel createColorLevel(int);
-void initColorLevels();
-void calculateFrequencies();
+ColorLevel createColorLevel(int, int);
+void initColorLevels(int);
+void calculateFrequencies(int **, int);
 void saveFrequencies();
 void drawFrequenciesChart();
 
@@ -37,16 +36,17 @@ ColorLevel createColorLevel(int value, int imgSize)
     return level;
 }
 
-void initColorLevels()
+void initColorLevels(int imgSize)
 {
     for (int i = 0; i < 256; i++)
     {
-        colorLevels[i] = createColorLevel(i);
+        colorLevels[i] = createColorLevel(i, imgSize);
     }
 }
 
 void calculateFrequencies(int **image, int imgSize)
 {
+    initColorLevels(imgSize);
     for (int i = 0; i < imgSize; i++)
     {
         for (int j = 0; j < imgSize; j++)
@@ -55,6 +55,8 @@ void calculateFrequencies(int **image, int imgSize)
             colorLevels[image[i][j]].frequency = (double)colorLevels[image[i][j]].occurrence / (imgSize * imgSize);
         }
     }
+
+    saveFrequencies();
 }
 
 void saveFrequencies()

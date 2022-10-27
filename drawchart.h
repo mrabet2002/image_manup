@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "fmanup.h"
 
-#define FMANUP_H_INCLUDED
+#ifndef FMANUP_H_INCLUDED
+    #define FMANUP_H_INCLUDED
+    #include "fmanup.h"
+#endif
 
 #define GNUPLOT_SCRIPT_PATH "plot-script.gp"
 

@@ -13,47 +13,52 @@
 
 typedef struct Image{
     int **pixels;
-    int imageSize;
+    int size;
 } Image;
 
-int **generateImage(int **, int);
-void saveImage(int **, int);
+Image __constImage(int);
+void generatePixels(Image *);
+void saveImage(Image);
 void drawImage();
 int getRandIntiger();
 
-int **generateImage(int **image, int imgSize)
-{
-    image = malloc(sizeof(int *) * imgSize);
-    for (int x = 0; x < imgSize; x++)
+Image __constImage(int imageSize){
+    Image image;
+    image.size = imageSize;
+    image.pixels = malloc(sizeof(int) * imageSize);
+    for (int x = 0; x < image.size; x++)
     {
-        image[x] = calloc(imgSize, sizeof(int));
+        image.pixels[x] = calloc(image.size, sizeof(int));
     }
-
-    time_t seconds;
-    srand(time(&seconds));
-
-    for (int y = 0; y < imgSize; y++)
-    {
-        for (int x = 0; x < imgSize; x++)
-        {
-            image[y][x] = getRandIntiger();
-        }
-    }
-
-    saveImage(image, imgSize);
 
     return image;
 }
 
-void saveImage(int **image, int imgSize)
+void generatePixels(Image *image)
+{
+    time_t seconds;
+    srand(time(&seconds));
+
+    for (int y = 0; y < image->size; y++)
+    {
+        for (int x = 0; x < image->size; x++)
+        {
+            image->pixels[y][x] = getRandIntiger();
+        }
+    }
+
+    saveImage(*image);
+}
+
+void saveImage(Image image)
 {
     FILE *filePtr = openFile(IMG_FILE_NAME, "wt");
 
-    for (int y = 0; y < imgSize; y++)
+    for (int y = 0; y < image.size; y++)
     {
-        for (int x = 0; x < imgSize; x++)
-            fprintf(filePtr, "%d\t", image[y][x]); // fprintf(filePtr, "%d,%d,%d\n", y, x,image[y][x]);
-        if (y < imgSize - 1)
+        for (int x = 0; x < image.size; x++)
+            fprintf(filePtr, "%d\t", image.pixels[y][x]); // fprintf(filePtr, "%d,%d,%d\n", y, x,image[y][x]);
+        if (y < image.size - 1)
             fprintf(filePtr, "\n");
     }
 
