@@ -11,11 +11,6 @@
 
 #define IMG_FILE_NAME "image-matrix.csv"
 
-typedef struct Image{
-    int **pixels;
-    int imageSize;
-} Image;
-
 int **generateImage(int **, int);
 void saveImage(int **, int);
 void drawImage();

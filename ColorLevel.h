@@ -32,13 +32,14 @@ ColorLevel createColorLevel(int value, int imgSize)
     ColorLevel level;
     level.value = value;
     level.occurrence = 0;
-    level.frequency = level.occurrence / imgSize;
+    level.frequency = 0;
     return level;
 }
 
 void initColorLevels(int imgSize)
 {
-    for (int i = 0; i < 256; i++)
+    int i;
+    for (i = 0; i < 256; i++)
     {
         colorLevels[i] = createColorLevel(i, imgSize);
     }

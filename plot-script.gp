@@ -2,7 +2,6 @@ set datafile separator data_separator
 set title chart_title
 
 if( chart_type eq "image" ){
-    print 1
     unset colorbox
     unset tics
     set palette grey
