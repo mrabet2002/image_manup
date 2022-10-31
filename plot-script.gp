@@ -9,8 +9,9 @@ if( chart_type eq "image" ){
 } else {
     set xlabel x_label
     set ylabel y_label
+    set format y '%.5f'    
     set grid
     plot filename using 1:2 w lines lw line_w lc line_c
 }
 
-pause 5
+pause mouse keypress

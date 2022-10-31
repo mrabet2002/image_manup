@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-#include "ColorLevel.h"
+#include "colorlevel.h"
 
 #ifndef DRAWCHART_H_INCLUDED
     #define DRAWCHART_H_INCLUDED

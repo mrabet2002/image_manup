@@ -74,7 +74,7 @@ void drawFrequenciesChart()
     Data data;
     data.src = COLORS_FREQ_FILE_NAME;
     data.separator = ",";
-    Chart chart = __constChart("Levels", "Level", "Frequncies", "l", "f", "1.5", data);
+    Chart chart = __constChart("Levels", "Level", "Frequncies", "l", "12", "1.5", data);
     drawChart(chart);
 }
 
